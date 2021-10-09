@@ -1,0 +1,26 @@
+﻿@using System.Text.Encodings.Web
+
+@model Customer
+@inject JavaScriptEncoder JavaScriptEncoder
+
+<h2>Unsafe Javascript</h2>
+<form asp-action="JavascriptAttack">
+    @Html.HiddenFor(m => m.UserId)
+    <div class="form-group">
+        <label for="userName">Please enter your user id</label>
+        <input type="text" class="form-control" id="userName" name="userName" value="User">
+    </div>
+    <button type="submit" class="mt-md-1 btn btn-primary" onclick="alert('Saving user name for account with id: @Context.Request.Query["userId"]');">Submit</button>
+</form>
+<br />
+<h2>Safe Javascript</h2>
+<form asp-action="JavascriptAttack">
+    @Html.HiddenFor(m => m.UserId)
+    <div class="form-group">
+        <label for="userName2">Please enter your user id</label>
+        <input type="text" class="form-control" id="userName2" name="userName2" value="User">
+    </div>
+    <button type="submit" class="mt-md-1 btn btn-primary" onclick="alert('Saving user name for account with id: @JavaScriptEncoder.Encode(Context.Request.Query["UserId"])');">Submit</button>
+</form>
+
+@*%27);alert('You got attacked');//*@

@@ -1,0 +1,26 @@
+﻿@model Customer
+
+<div asp-validation-summary="All"></div>
+
+<form asp-action="Index">
+    <div class="form-group">
+        <label asp-for="UserName">Please enter your user name</label>
+        <input type="text" class="form-control" asp-for="UserName" value="User">
+    </div>
+    <button type="submit" class="mt-md-1 btn btn-primary">Submit</button>
+</form>
+
+<br />
+
+@if (!string.IsNullOrEmpty(Model.UserName))
+{
+    <div class="row">
+        <p>Safe output: @(Model.UserName)</p>
+    </div>
+    <div class="row">
+        <p>Unsafe output: @Html.Raw(Model.UserName)</p>
+    </div>
+}
+
+
+@*<script>alert('attacked')</script>*@
