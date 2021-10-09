@@ -13,9 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+## This should exist
+from django.conf.urls import url
 from django.contrib import admin
-from django.urls import path
+## END This should exist
+
+## Important : Import the views from the demo folder
+## to get the index action
+from XSSlab import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-]
+    url(r'^admin/', admin.site.urls),
+    ## Create the action for : http://127.0.0.1/
+    ## Use the index action from the views on /XSSlab/views.py
+    url(r'', views.index),
+ ]
