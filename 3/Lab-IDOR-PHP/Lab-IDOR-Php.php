@@ -2,7 +2,7 @@
 	session_start();
 	if (!$_SESSION["LoginAdmin"])
 	{
-		header('location:../');
+		header('location:./login.php');
 	};
 	?>
 <!DOCTYPE html>
